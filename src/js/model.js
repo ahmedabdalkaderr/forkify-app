@@ -73,9 +73,13 @@ export const getSearchResultPage = function () {
 
 export const updateServings = async function (newServings) {
   const oldServings = state.recipe.servings;
+ // console.log(state.recipe.ingredients);
   state.recipe.ingredients.forEach(ing => {
+  //  console.log(ing);
     ing.quantity = (ing.quantity * newServings) / oldServings;
+   // console.log(ing);
   });
+ //console.log(state.recipe.ingredients);
   state.recipe.servings = newServings;
 };
 
@@ -84,6 +88,7 @@ const findIndex = function (id) {
     if (bookmark.id === id) return index;
   });
 };
+
 export const updateBookmark = async function () {
   if (state.recipe.bookmarked) state.bookmarks.push(state.recipe);
   else {

@@ -644,7 +644,7 @@ const controlPagination = async function(page) {
 };
 const updateServings = async function(servings) {
     await _modelJs.updateServings(servings);
-    (0, _recipeViewJsDefault.default).update(_modelJs.state.recipe);
+    (0, _recipeViewJsDefault.default).render(_modelJs.state.recipe);
 };
 const controlBookMark = async function() {
     await _modelJs.updateBookmark();
@@ -1999,9 +1999,13 @@ const getSearchResultPage = function() {
 };
 const updateServings = async function(newServings) {
     const oldServings = state.recipe.servings;
+    // console.log(state.recipe.ingredients);
     state.recipe.ingredients.forEach((ing)=>{
+        //  console.log(ing);
         ing.quantity = ing.quantity * newServings / oldServings;
+    // console.log(ing);
     });
+    //console.log(state.recipe.ingredients);
     state.recipe.servings = newServings;
 };
 const findIndex = function(id) {
